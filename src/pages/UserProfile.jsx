@@ -8,11 +8,11 @@ import { Link } from 'react-router-dom';
 
 function UserProfile() {
   const [userDetails,setUserDetails]=useState("")
-  useEffect(()=>{
+  useEffect(() => {
     if (sessionStorage.getItem("user")) {
-      setUserDetails(JSON.parse(sessionStorage.getItem("user")))
+      setUserDetails(JSON.parse(sessionStorage.getItem("user")));
     }
-  })
+  },[]);
   return (
     <div>
         <Header/>

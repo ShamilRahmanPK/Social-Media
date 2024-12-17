@@ -11,3 +11,8 @@ export const registerAPI = async (reqBody)=>{
 export const loginAPI = async (reqBody)=>{
     return await commonAPI("POST",`${SERVER_BASE_URL}/login`,reqBody)
 }
+
+// add post 
+export const addPostAPI = async (reqBody,reqHeader)=>{
+    return await commonAPI("POST",`${SERVER_BASE_URL}/add-post`,reqBody,reqHeader)
+}

@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import bgImg from "../assets/bg.svg";
 import { Link, useNavigate } from "react-router-dom";
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { addPostAPI } from "../services/allAPI";
 
 function AddPost() {
   const navigate = useNavigate()
@@ -29,6 +32,45 @@ function AddPost() {
     setUploadFileStatus(false)
     setPostDetails({postname:"",description:"",imageUrl:""})
     navigate('/home')
+  }
+
+  const handleAddPost = async (e) =>{
+    e.preventDefault()
+    const {postname,description,imageUrl} = postDetails
+    if (postname && description && imageUrl) {
+      // api call
+      const reqBody = new FormData()
+      reqBody.append("postname",postname)
+      reqBody.append("description",description)
+      reqBody.append("imageUrl",imageUrl)
+
+      const token = sessionStorage.getItem("token")
+      if (token) {
+        const reqHeader = {
+          "Content-Type":"multipart/form-data",
+          "Authorization":`bearer ${token}`
+        }
+        // make api call
+        try {
+          const result = await addPostAPI(reqBody,reqHeader)
+          console.log(result);
+          if (result.status==200) {
+            toast("Post Uploaded successfully!")
+            navigate('/profile')
+          }else{
+            if (result.response.status==406) {
+              toast(result.response.data)
+            }
+          }
+        } catch (err) {
+          console.log(err);
+          
+        }
+      }
+
+    } else {
+      toast("Please fill the form completely")
+    }
   }
 
 
@@ -123,7 +165,7 @@ function AddPost() {
             ></textarea>
           </div>
           <div className="d-flex">
-            <button type="submit" style={{
+            <button onClick={handleAddPost} type="submit" style={{
                     borderRadius: '50px',
                     padding: '10px 25px',
                     fontWeight: '500',
@@ -150,6 +192,18 @@ function AddPost() {
           </div>
         </form>
       </div>
+      <ToastContainer
+      position="top-left"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="dark" transition={Bounce}
+      />
     </div>
   );
 }
