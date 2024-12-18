@@ -1,10 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import bgImg from '../assets/bg.svg';
+import { singlePostAPI } from "../services/allAPI";
+import SERVER_BASE_URL from "../services/serverUrl";
+
+
+
 
 function View() {
+    const { id } = useParams(); 
+    const [postDetails, setPostDetails] = useState(null);
+
+    console.log(postDetails);
+    
+
+    // Fetch single post details
+    const getPostDetails = async () => {
+      const token = sessionStorage.getItem("token")
+      if (token) {
+        const reqHeader = {
+          "Authorization" : `Bearer ${token}`
+        }
+        // make api call
+        try {
+          const result = await singlePostAPI(id, reqHeader);
+          if (result.status === 200) {
+            setPostDetails(result.data);
+          }
+        } catch (err) {
+          console.log(err);
+          
+        }
+      }
+      
+    };
+
+    useEffect(() => {
+      getPostDetails();
+    }, [id]);
+
   return (
     <div>
       <Header insideView={true} />
@@ -19,8 +55,8 @@ function View() {
       >
         <div className="row">
             <div className="col-lg-6 mt-5">
-                <h1 className="mt-3">Ashish Post</h1>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat laudantium, ea ipsa quasi ab possimus velit fugit iusto. Ullam quos, amet enim facere atque omnis facilis beatae eaque culpa repellendus!</p>
+                <h1 className="mt-3">{postDetails?.postname}</h1>
+                <p>{postDetails?.description}</p>
                 <Link to={"/view-user"}
                   style={{
                     textDecoration: "none",
@@ -33,7 +69,7 @@ function View() {
             </div>
             <div className="d-flex col-lg-6 justify-content-center mt-4">
               <img
-                src="https://via.placeholder.com/500x300"
+                src={`${SERVER_BASE_URL}/uploads/${postDetails?.imageUrl}`}
                 alt="Post"
                 style={{
                   width: "100%",

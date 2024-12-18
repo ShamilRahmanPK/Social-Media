@@ -1,11 +1,12 @@
 import React from 'react'
-import postImg from '../assets/postImg.jpg'
 import { Link } from 'react-router-dom'
+import SERVER_BASE_URL from '../services/serverUrl'
 
-function PostCard() {
+function PostCard({displayData}) {
+  
   return (
     <>
-    <Link to={'/view'} className='col-lg-4 col-md-6' style={{textDecoration:'none'}}>
+    <Link to={`/view/${displayData._id}`} className="col-lg-4 col-md-6" style={{ textDecoration: 'none' }}>
   <div className="card border-1" style={{
     overflow: 'hidden', 
     borderRadius: '30px',
@@ -21,7 +22,7 @@ function PostCard() {
     onMouseLeave={(e) => e.currentTarget.style.boxShadow = '3px 3px 1px rgba(0, 0, 0, 1)'}
   >
     <img
-      src={postImg}
+      src={`${SERVER_BASE_URL}/uploads/${displayData.imageUrl}`}
       className="card-img-top"
       alt="Post Image"
       style={{
@@ -30,7 +31,7 @@ function PostCard() {
       }}
     />
     <div className="card-body">
-      <h5 className="card-title fw-bolder">Ashish Post</h5>
+      <h5 className="card-title fw-bolder">{displayData.postname}</h5>
       <a href="#" className="card-link text-decoration-none">
         View full post
       </a>

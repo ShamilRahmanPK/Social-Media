@@ -1,9 +1,21 @@
 import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Header({outsideLogin,insideView}) {
+
+  const navigate = useNavigate()
+
+
+  const logout = () => {
+    sessionStorage.clear()
+    navigate('/')
+    toast.error("Logout succefully")
+  }
+
   return (
     <>
     <Navbar style={{zIndex:10,height:"80px",backgroundColor:'white'}} className="shadow border w-100">
@@ -55,7 +67,7 @@ function Header({outsideLogin,insideView}) {
                 Profile
               </Link>
               }
-            <Link><button type="button" className="btn btn-outline-secondary" style={{
+            <button onClick={logout} type="button" className="btn btn-outline-secondary" style={{
                     borderRadius: '50px',
                     padding: '10px 25px',
                     fontWeight: '500',
@@ -65,11 +77,11 @@ function Header({outsideLogin,insideView}) {
                     backgroundColor: 'white',
                     color: 'red',
                   }}>Logout <i class="fa-solid fa-right-from-bracket"></i></button>
-            </Link>
           </div>
           }
         </Container>
       </Navbar> 
+      <ToastContainer position='top-left' />
     </>
   )
 }

@@ -27,7 +27,7 @@ function App() {
       <Route path='/edit-profile' element={<EditProfile />} />
       <Route path='/profile' element={<UserProfile />} />
       <Route path='/add-post' element={<AddPost />} />
-      <Route path='/view' element={<View />} />
+      <Route path="/view/:id" element={<View />} />
       <Route path='/view-user' element={<ViewUser />} />
     </Routes>
     </>
