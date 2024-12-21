@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Header from '../components/Header';
 import bgImg from '../assets/bg.svg';
 import mainImg from '../assets/mainImg.jpg';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
+import { logoutContext } from '../contexts/ContextShare';
 
 const Landing = () => {
+  const {logout,setLogout} = useContext(logoutContext)
   const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
@@ -15,7 +17,7 @@ const Landing = () => {
     } else {
       setIsLogin(false);
     }
-  }, []);
+  }, [logout]);
 
   return (
     <>

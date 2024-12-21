@@ -71,7 +71,8 @@ const Home = () => {
             ))
             }
           </div>
-          <div className='d-flex justify-content-center mt-4'><Link to={'/all-users'}><span className='text-center'>View more</span></Link></div>
+          <div className='d-flex justify-content-center mt-4'>
+            <Link to={'/all-users'}><span className='text-center'>View more</span></Link></div>
         </div>
       </div>
       <Footer/>

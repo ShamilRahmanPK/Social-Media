@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { logoutContext } from '../contexts/ContextShare';
 
 function Header({ outsideLogin, insideView }) {
+  const {logout,setLogout} = useContext(logoutContext)
   const navigate = useNavigate();
 
-  const logout = () => {
+  const logoutFunction = () => {
+    setLogout("0")
     sessionStorage.clear();
     toast.error("Logout successfully");
     setTimeout(() => {
@@ -70,7 +73,7 @@ function Header({ outsideLogin, insideView }) {
                     </Link>
                   )
                 }
-                <button onClick={logout} type="button" className="btn btn-outline-secondary" style={{
+                <button onClick={logoutFunction} type="button" className="btn btn-outline-secondary" style={{
                   borderRadius: '50px',
                   padding: '10px 25px',
                   fontWeight: '500',

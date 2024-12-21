@@ -108,6 +108,7 @@ function EditPost({ post }) {
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
+        centered
       >
         <Modal.Header closeButton>
           <Modal.Title>Edit Post</Modal.Title>
@@ -143,11 +144,38 @@ function EditPost({ post }) {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={()=>{deletePost(post?._id)}} variant="danger">Delete Post</Button>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button  style={{
+        borderRadius: '50px',
+        padding: '10px 25px',
+        fontWeight: '500',
+        fontSize: '16px',
+        border: '2px solid black',
+        boxShadow: '2px 2px 5px rgb(0, 0, 0)',
+        backgroundColor: 'white',
+        color: 'red',
+      }} onClick={()=>{deletePost(post?._id)}} variant="danger">Delete Post</Button>
+          <Button  style={{
+        borderRadius: '50px',
+        padding: '10px 25px',
+        fontWeight: '500',
+        fontSize: '16px',
+        border: '2px solid black',
+        boxShadow: '2px 2px 5px rgb(0, 0, 0)',
+        backgroundColor: 'black',
+        color: 'white',
+      }} variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button onClick={handleUpdatePost} variant="primary">
+          <Button  style={{
+        borderRadius: '50px',
+        padding: '10px 25px',
+        fontWeight: '500',
+        fontSize: '16px',
+        border: '2px solid black',
+        boxShadow: '2px 2px 5px rgb(0, 0, 0)',
+        backgroundColor: 'white',
+        color: 'black',
+      }} onClick={handleUpdatePost} variant="primary">
             Save Changes
           </Button>
         </Modal.Footer>
