@@ -1,9 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import SERVER_BASE_URL from '../services/serverUrl'
+
 
 function UserCard({ displayData }) {
   return (
-    <Link to={'/view-user'} className='col-lg-3 col-md-5 text-decoration-none'>
+    <Link to={`/view-user/${displayData._id}`} className='col-lg-3 col-md-5 text-decoration-none'>
       <div
         className="card border-2 rounded-3 text-center"
         style={{
@@ -33,7 +35,7 @@ function UserCard({ displayData }) {
           <img
             src={
               displayData?.profilePic && displayData.profilePic.trim() !== '' 
-                ? displayData.profilePic 
+                ? `${SERVER_BASE_URL}/uploads/${displayData.profilePic}` 
                 : 'https://imgs.search.brave.com/odGlhx_DRYtz6d2mX5ELwD6kAZFHukGACLnLKKiDxXo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS12ZWN0/b3IvcGVyc29uYWwt/cHJvZmlsZS1kb2N1/bWVudC13aXRoLXBo/b3RvLWlkLW15LWFj/Y291bnQtaWNvbi1p/c29sYXRlZC1mbGF0/LWNhcnRvb25fMTAx/ODg0LTc0OC5qcGc_/c2VtdD1haXNfaHli/cmlk'
             }
             alt="Profile"

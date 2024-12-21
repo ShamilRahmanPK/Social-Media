@@ -28,7 +28,7 @@ function App() {
       <Route path='/profile' element={<UserProfile />} />
       <Route path='/add-post' element={<AddPost />} />
       <Route path="/view/:id" element={<View />} />
-      <Route path='/view-user' element={<ViewUser />} />
+      <Route path='/view-user/:userId' element={<ViewUser />} />
     </Routes>
     </>
   )

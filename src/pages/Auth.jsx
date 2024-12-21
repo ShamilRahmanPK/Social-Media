@@ -24,8 +24,10 @@ const Auth = () => {
       try {
         const result = await registerAPI(userInput)
         if (result.status==200) {
-          toast(`Welcome ${result.data?.username},Please login to explore`)
-          navigate('/login')
+          toast(`Welcome ${result.data?.username},Redirecting to Login`)
+          setTimeout(()=>{
+            navigate('/login')
+          },3000)
           setUserInput({firstname:"",lastname:"",username:"",email:"",password:""})
         }else{
           if (result.response.status==406) {

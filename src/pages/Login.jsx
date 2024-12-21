@@ -26,6 +26,7 @@ function Login() {
           sessionStorage.setItem("user",JSON.stringify(result.data.user))
           sessionStorage.setItem("token",(result.data.token))
           setIsLogin(true)
+          toast("Logined Successfully")
           setTimeout(()=>{
             navigate('/')
           setUserInput({email:"",password:""})

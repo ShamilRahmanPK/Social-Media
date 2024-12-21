@@ -33,12 +33,39 @@ export const allPostAPI = async (reqHeader)=>{
 }
 
 
+
 // Fetch single post by ID
 export const singlePostAPI = async (postId, reqHeader) => {
-    return await commonAPI("GET", `${SERVER_BASE_URL}/post/${postId}`, {}, reqHeader);
+    return await commonAPI("GET", `${SERVER_BASE_URL}/post/${postId}`,{}, reqHeader);
   };
 
 // home users
 export const homeUserAPI = async ()=>{
     return await commonAPI("GET",`${SERVER_BASE_URL}/home-users`,{})
 }  
+
+// Fetch single user by userID
+export const singleUserAPI = async (userId, reqHeader) => {
+    return await commonAPI("GET", `${SERVER_BASE_URL}/user/${userId}`,{}, reqHeader);
+  };
+
+  // Fetch single post by userID
+export const singleUserAllPostsAPI = async (userId, reqHeader) => {
+    return await commonAPI("GET", `${SERVER_BASE_URL}/user/posts/${userId}`,{}, reqHeader);
+  };
+
+// edit use
+export const updateUserAPI = async (reqBody,reqHeader) => {
+    return await commonAPI("PUT",`${SERVER_BASE_URL}/user/edit`,reqBody,reqHeader);
+  };
+
+// Edit post
+export const updateUserPostAPI = async (id, reqHeader, reqBody) => {
+    return await commonAPI("PUT", `${SERVER_BASE_URL}/post/${id}/edit`, reqBody, reqHeader);
+};
+
+// deete post /post/:id/delete
+export const deletePostAPI = async (id, reqHeader) => {
+    return await commonAPI("DELETE", `${SERVER_BASE_URL}/post/${id}/delete`, {}, reqHeader);
+};
+
