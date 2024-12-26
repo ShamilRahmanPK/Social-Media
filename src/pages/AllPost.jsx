@@ -26,6 +26,7 @@ function AllPost() {
           setAllPost(result.data)
         }
       } catch (err) {
+        console.log(err);
         
       }
     }

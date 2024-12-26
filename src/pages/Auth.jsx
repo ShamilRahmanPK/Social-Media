@@ -115,6 +115,7 @@ const Auth = () => {
                     color: 'black',
                   }}>Create Acount</button>
                 <p>Existing User ? Please Click here to <Link to={'/login'}>Login</Link></p>
+                <p><Link style={{textDecoration:'none'}} to={'/'}>Go back</Link></p>
               </div>
             </Form>
               </div>

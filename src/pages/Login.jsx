@@ -97,6 +97,7 @@ function Login() {
                     }
                   </button>
                 <p>New User ? Please Click here to <Link to={'/auth'}>Register</Link></p>
+                <p><Link style={{textDecoration:'none'}} to={'/'}>Go back</Link></p>
               </div>
             </Form>
               </div>

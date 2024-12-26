@@ -32,6 +32,12 @@ export const allPostAPI = async (reqHeader)=>{
     return await commonAPI("GET",`${SERVER_BASE_URL}/all-posts`,{},reqHeader)
 }
 
+// all posts
+export const allUserAPI = async (reqHeader)=>{
+    return await commonAPI("GET",`${SERVER_BASE_URL}/all-user`,{},reqHeader)
+}
+
+
 
 
 // Fetch single post by ID
