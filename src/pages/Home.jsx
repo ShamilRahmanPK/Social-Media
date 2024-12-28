@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { Link } from 'react-router-dom'
@@ -6,9 +6,11 @@ import PostCard from '../components/PostCard'
 import UserCard from '../components/UserCard'
 import bgImg from '../assets/bg.svg';
 import { homePostAPI, homeUserAPI } from '../services/allAPI'
+import { editUserContext } from '../contexts/ContextShare'
 
 
 const Home = () => {
+  const {editUserResponse,setEditUserResponse} = useContext(editUserContext)
   const [homePost,setHomePost] = useState([])
   const [homeUser,setHomeUser] = useState([])
 
@@ -18,7 +20,7 @@ const Home = () => {
   useEffect(()=>{
     getHomePost()
     getHomeUser()
-  },[])
+  },[editUserResponse])
 
   const getHomePost = async ()=>{
     try {
