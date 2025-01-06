@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import bgImg from "../assets/bg.svg";
 import { Link, useNavigate } from "react-router-dom";
-import { Bounce, ToastContainer, toast } from 'react-toastify';
+import { Bounce, toast } from 'react-toastify';
+import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { addPostAPI } from "../services/allAPI";
+import SERVER_BASE_URL from "../services/serverUrl";
 
 function AddPost() {
   const navigate = useNavigate()
@@ -73,6 +75,44 @@ function AddPost() {
     }
   }
 
+  const handleAutoGenerate = async () => {
+    if (!postDetails.imageUrl) {
+      toast("Please upload an image first");
+      return;
+    }
+
+    console.log(postDetails.imageUrl);
+    
+  
+    const reqBody = new FormData();
+    reqBody.append("image", postDetails.imageUrl);
+  
+    try {
+      const response = await fetch(`${SERVER_BASE_URL}/generate-description`, {
+        method: "POST",
+        body: reqBody,
+      });
+  
+      const data = await response.json();
+      console.log(data);
+      
+  
+      if (response.ok && data.title) {
+        setPostDetails({
+          ...postDetails,
+          postname: data.title,
+          description: data.description,
+        });
+        toast.success("Title and description generated successfully!");
+      } else {
+        toast.error("Failed to generate title and description");
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Error generating description");
+    }
+  };
+  
 
   return (
     <div style={{ minHeight: "100vh", backgroundImage: `url(${bgImg})` }}>
@@ -165,6 +205,24 @@ function AddPost() {
             ></textarea>
           </div>
           <div className="d-flex">
+          <button
+  type="button"
+  onClick={handleAutoGenerate}
+  style={{
+    borderRadius: "50px",
+    padding: "10px 25px",
+    fontWeight: "500",
+    fontSize: "16px",
+    border: "2px solid black",
+    boxShadow: "2px 2px 3px rgba(0, 0, 0, 1)",
+    backgroundColor: "white",
+    color: "green",
+  }}
+  className="btn btn-primary w-100 m-2"
+>
+  Generate Title & Description
+</button>
+
             <button onClick={handleAddPost} type="submit" style={{
                     borderRadius: '50px',
                     padding: '10px 25px',
@@ -196,14 +254,12 @@ function AddPost() {
       position="top-left"
       autoClose={5000}
       hideProgressBar={false}
-      newestOnTop={false}
       closeOnClick
       rtl={false}
       pauseOnFocusLoss
       draggable
-      pauseOnHover
-      theme="dark" transition={Bounce}
-      />
+      pauseOnHover={false}  
+      theme="dark"/>
     </div>
   );
 }

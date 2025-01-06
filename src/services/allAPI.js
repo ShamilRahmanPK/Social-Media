@@ -75,3 +75,4 @@ export const deletePostAPI = async (id, reqHeader) => {
     return await commonAPI("DELETE", `${SERVER_BASE_URL}/post/${id}/delete`, {}, reqHeader);
 };
 
+
