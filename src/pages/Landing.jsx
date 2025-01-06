@@ -27,7 +27,8 @@ const Landing = () => {
           <Row className="h-100 align-items-center">
             <Col>
               <div>
-                <h1 style={{ fontSize: '60px' }}>Webflow Social Media Template</h1>
+                <h1 style={{ fontSize: '60px' }}>Photosam <br />
+                  Social Media.</h1>
                 <p>Allow members to create a profile, make posts, and delete posts</p>
                 {
                   isLogin ?
