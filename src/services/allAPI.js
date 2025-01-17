@@ -32,7 +32,7 @@ export const allPostAPI = async (reqHeader)=>{
     return await commonAPI("GET",`${SERVER_BASE_URL}/all-posts`,{},reqHeader)
 }
 
-// all posts
+// all user
 export const allUserAPI = async (reqHeader)=>{
     return await commonAPI("GET",`${SERVER_BASE_URL}/all-user`,{},reqHeader)
 }
@@ -75,4 +75,36 @@ export const deletePostAPI = async (id, reqHeader) => {
     return await commonAPI("DELETE", `${SERVER_BASE_URL}/post/${id}/delete`, {}, reqHeader);
 };
 
+
+// admin 
+
+// all posts approval
+export const allPostApprovalAPI = async (reqHeader)=>{
+    return await commonAPI("GET",`${SERVER_BASE_URL}/admin/all-post-approval`,{},reqHeader)
+}
+
+// Fetch single post by ID
+export const adminSinglePostAPI = async (postId) => {
+    return await commonAPI("GET", `${SERVER_BASE_URL}/admin-post-view/${postId}`,{});
+  };
+
+  // approve  post by ID
+export const approvePostAPI  = async (id) => {
+    return await commonAPI("PATCH", `${SERVER_BASE_URL}/approve-post/${id}`,{});
+  };
+
+  // deete post /post/:id/delete
+export const adminDeletePostAPI = async (id) => {
+    return await commonAPI("DELETE", `${SERVER_BASE_URL}/admin/${id}/delete`, {});
+};
+
+// all posts 
+export const allPostAdminAPI = async ()=>{
+    return await commonAPI("GET",`${SERVER_BASE_URL}/admin/all-post`,{})
+}
+
+// all posts 
+export const allUserAdminAPI = async ()=>{
+    return await commonAPI("GET",`${SERVER_BASE_URL}/admin/all-user`,{})
+}
 

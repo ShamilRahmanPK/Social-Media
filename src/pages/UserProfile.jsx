@@ -11,7 +11,7 @@ import SERVER_BASE_URL from "../services/serverUrl";
 function UserProfile() {
   const [userDetails, setUserDetails] = useState([]);
   const [userPosts, setUserPosts] = useState([]);
-  console.log(userDetails);
+  console.log(userDetails,userPosts);
 
   useEffect(() => {
     getAllUserPost();

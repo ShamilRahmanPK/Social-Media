@@ -1,3 +1,15 @@
 * {
     font-family: "Playfair Display", serif;
 }
+
+/* Custom tooltip styles */
+.custom-tooltip .tooltip-inner {
+    background-color: red;
+    color: white ;
+    font-weight: bold;
+  }
+  
+  .custom-tooltip .tooltip-arrow {
+    border-top-color: red 
+  }
+  

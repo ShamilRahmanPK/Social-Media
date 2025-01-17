@@ -7,6 +7,7 @@ import UserCard from '../components/UserCard'
 import bgImg from '../assets/bg.svg';
 import { homePostAPI, homeUserAPI } from '../services/allAPI'
 import { editUserContext } from '../contexts/ContextShare'
+import 'animate.css';
 
 
 const Home = () => {
@@ -52,7 +53,7 @@ const Home = () => {
       <Header/>
       <div className='container mb-3 mt-5'>
         <div>
-          <h2 className="mb-4 fw-bolder">Recent posts</h2>
+          <h2 className="mb-4 fw-bolder animate__animated animate__fadeIn">Recent posts</h2>
           <hr />
           <div className="row g-4">
             {

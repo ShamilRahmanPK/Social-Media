@@ -1,5 +1,6 @@
 import {Route, Routes} from 'react-router-dom'
 import './App.css'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Landing from './pages/Landing'
 import Auth from './pages/Auth'
 import Login from './pages/Login'
@@ -11,6 +12,12 @@ import AllUsers from './pages/AllUsers'
 import AddPost from './pages/AddPost'
 import View from './pages/View'
 import ViewUser from './pages/ViewUser'
+import AdminHome from './admin/AdminHome'
+import AdminPostValidation from './admin/AdminPostValidation'
+import AdminPostView from './admin/AdminPostView'
+import AdminAllPost from './admin/AdminAllPost'
+import AdminAllUser from './admin/AdminAllUser'
+
 
 
 function App() {
@@ -29,6 +36,11 @@ function App() {
       <Route path='/add-post' element={<AddPost />} />
       <Route path="/view/:id" element={<View />} />
       <Route path='/view-user/:userId' element={<ViewUser />} />
+      <Route path='/admin' element={<AdminHome/>}/>
+      <Route path='/admin-post-validate' element={<AdminPostValidation/>}/>
+      <Route path="/admin/post-view/:id" element={<AdminPostView />} />
+      <Route path="/admin/all-post" element={<AdminAllPost />} />
+      <Route path="/admin/all-user" element={<AdminAllUser />} />
     </Routes>
     </>
   )

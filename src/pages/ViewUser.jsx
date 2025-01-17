@@ -7,6 +7,7 @@ import bgImg from "../assets/bg.svg";
 import PostCard from "../components/PostCard";
 import { editUserContext } from "../contexts/ContextShare";
 import SERVER_BASE_URL from "../services/serverUrl";
+import AdminHeader from "../admin/components/AdminHeader";
 
 function ViewUser() {
   const { editUserResponse, setEdiUserResponse } = useContext(editUserContext);
@@ -61,7 +62,7 @@ function ViewUser() {
 
   return (
     <>
-      <Header />
+      {sessionStorage.getItem("IsAdmin") ? <AdminHeader /> : <Header/>}
       <div
         className="pt-5"
         style={{
@@ -98,7 +99,27 @@ function ViewUser() {
             >
               {userDetails?.userBio || "This user has not added a bio yet."}
             </p>
+            <div className="button text-align-center mt-4">
+              <a
+                type="button"
+                className="btn btn-outline-secondary me-4"
+                style={{
+                  borderRadius: "50px",
+                  padding: "10px 25px",
+                  fontWeight: "500",
+                  fontSize: "16px",
+                  border: "2px solid black",
+                  boxShadow: "2px 2px 3px rgba(0, 0, 0, 1)",
+                  color: "black",
+                  backgroundColor: "white",
+                }}
+                href={`mailto:${userDetails?.email}?subject=Hello&body=Hi%20there,%0D%0A%0D%0AI%20like%20your%20photos%20and%20photography%20styles.%20Would%20you%20be%20ready%20to%20work%20for%20me?%20Please%20contact%20me%20via%20email.`}
+              >
+                Contact Me <i class="fa-regular fa-envelope fa-bounce"></i>
+              </a>
+            </div>
           </div>
+
           {/* Profile Image Section */}
           <div
             className="d-flex justify-content-center align-items-center"
@@ -124,25 +145,27 @@ function ViewUser() {
           </div>
         </div>
         {/* Posts Section */}
-        <div className="mt-5">
-          <h4 style={{ fontWeight: "600" }}>Posts</h4>
-          {/* Posts Section */}
-          <div className="container my-3">
-            <div className="row g-4">
-              {userPosts.length > 0 ? (
-                userPosts.map((post) => (
-                  <div key={post.id} className="col-lg-4 col-md-6">
-                    <PostCard displayData={post} />
+        {!sessionStorage.getItem("IsAdmin") && (
+          <div className="mt-5">
+            <h4 style={{ fontWeight: "600" }}>Posts</h4>
+            {/* Posts Section */}
+            <div className="container my-3">
+              <div className="row g-4">
+                {userPosts.length > 0 ? (
+                  userPosts.map((post) => (
+                    <div key={post.id} className="col-lg-4 col-md-6">
+                      <PostCard displayData={post} />
+                    </div>
+                  ))
+                ) : (
+                  <div className="text-center text-muted mt-3">
+                    This user has 0 posts.
                   </div>
-                ))
-              ) : (
-                <div className="text-center text-muted mt-3">
-                  This user has 0 posts.
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
       <Footer />
     </>

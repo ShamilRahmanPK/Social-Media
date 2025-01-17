@@ -18,30 +18,35 @@ function Login() {
 
   const login = async (e)=>{
     e.preventDefault()
-    if (userInput.email && userInput.password) {
-      // api call
-      try {
-        const result = await loginAPI(userInput)
-        if (result.status==200) {
-          sessionStorage.setItem("user",JSON.stringify(result.data.user))
-          sessionStorage.setItem("token",(result.data.token))
-          setIsLogin(true)
-          toast("Logined Successfully")
-          setTimeout(()=>{
-            navigate('/')
-          setUserInput({email:"",password:""})
-          setIsLogin(false)
-          },2000)
-        } else {
-          if (result.response.status==404) {
-            toast(result.response.data)
+    if (userInput.email=="admin" && userInput.password=="admin") {
+      navigate('/admin')
+      sessionStorage.setItem("IsAdmin",true)
+    } else {
+      if (userInput.email && userInput.password) {
+        // api call
+        try {
+          const result = await loginAPI(userInput)
+          if (result.status==200) {
+            sessionStorage.setItem("user",JSON.stringify(result.data.user))
+            sessionStorage.setItem("token",(result.data.token))
+            setIsLogin(true)
+            toast("Logined Successfully")
+            setTimeout(()=>{
+              navigate('/')
+            setUserInput({email:"",password:""})
+            setIsLogin(false)
+            },2000)
+          } else {
+            if (result.response.status==404) {
+              toast(result.response.data)
+            }
           }
+        } catch (err) {
+          console.log(err);
         }
-      } catch (err) {
-        console.log(err);
+      }else{
+        toast("Please fill the form Completely")
       }
-    }else{
-      toast("Please fill the form Completely")
     }
   }
 
