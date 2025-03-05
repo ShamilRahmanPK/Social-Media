@@ -58,7 +58,7 @@ const Auth = () => {
                     boxShadow: '2px 2px 5px rgba(0, 0, 0, 1)',
                     backgroundColor: 'white',
                     color: 'black',
-                  }} className="img-fluid rounded border border-2 border-black" />
+                  }} className="img-fluid rounded border-2 border-black" />
             </div>
             <div className="col-lg-6">
             <div className="w-100 d-flex justify-content-center">
