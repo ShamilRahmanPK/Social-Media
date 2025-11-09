@@ -70,21 +70,17 @@ function Login() {
           style={{ backgroundColor: "white", height: "500px" }}
         >
           <div className="row align-items-center">
-            <div className="col-lg-6 d-flex justify-content-center">
+            <div className="col-lg-6 d-flex justify-content-center mb-3 mb-lg-0">
               <img
                 src={authImg}
-                width={"90%"}
-                alt=""
+                alt="Login Illustration"
+                className="img-fluid rounded border border-2 border-black auth-image"
                 style={{
                   borderRadius: "50px",
-                  fontWeight: "500",
-                  fontSize: "16px",
                   border: "2px solid black",
                   boxShadow: "2px 2px 5px rgba(0, 0, 0, 1)",
-                  backgroundColor: "white",
-                  color: "black",
+                  maxWidth: "80%", 
                 }}
-                className="img-fluid rounded border border-2 border-black"
               />
             </div>
             <div className="col-lg-6">
