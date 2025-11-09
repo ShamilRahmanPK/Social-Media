@@ -17,7 +17,7 @@ function Footer() {
         {/* Middle Section */}
         <div>
           <p className="mb-0 text-muted">
-            © 2023 Memberstack. All rights reserved.
+            © 2024 Shamil Rahman PK. All rights reserved.
           </p>
         </div>
 

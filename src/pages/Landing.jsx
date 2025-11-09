@@ -29,7 +29,7 @@ const Landing = () => {
               <div>
                 <h1 style={{ fontSize: '60px' }}>Photosam <br />
                   Social Media.</h1>
-                <p>Allow members to create a profile, make posts, and delete posts</p>
+                <p>Allow members to create a profile, show thier photograph's gets connected</p>
                 {
                   isLogin ?
                     <Link to={'/home'}>

@@ -50,15 +50,17 @@ const Auth = () => {
         <div className="card shadow p-3" style={{backgroundColor:'white'}}>
           <div className="row align-items-center">
             <div className="col-lg-6 d-flex justify-content-center">
-              <img src={authImg} height={'100%'} alt="" style={{
-                    borderRadius: '50px',
-                    fontWeight: '500',
-                    fontSize: '16px',
-                    border: '2px solid black',
-                    boxShadow: '2px 2px 5px rgba(0, 0, 0, 1)',
-                    backgroundColor: 'white',
-                    color: 'black',
-                  }} className="img-fluid rounded border-2 border-black" />
+              <img
+                src={authImg}
+                alt=""
+                className="img-fluid rounded border-2 border-black"
+                style={{
+                  maxWidth: '80%', 
+                  borderRadius: '50px',
+                  border: '2px solid black',
+                  boxShadow: '2px 2px 5px rgba(0, 0, 0, 1)',
+                }}
+              />
             </div>
             <div className="col-lg-6">
             <div className="w-100 d-flex justify-content-center">

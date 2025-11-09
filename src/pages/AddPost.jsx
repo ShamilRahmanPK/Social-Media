@@ -221,7 +221,7 @@ function AddPost() {
               }}
               className="btn btn-primary w-100 m-2"
             >
-              Generate Title & Description
+              Auto Generate
               {isGenerating &&
                 <Spinner className='ms-1' animation="border" variant="secondary" />
               }
